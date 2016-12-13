@@ -14,13 +14,25 @@ class App extends Component {
         '', '', '', '', '', '', '', '', ''
       ],
       winner: null,
-      value: ''
+      value: null
     }
   }
 
-  winGame () {
-    const currentTurn = this.state.currentTurn
-    const winCombo = [
+  handleClick = (index) => {
+    const newTable = this.state.table.slice()
+    newTable[index] = this.state.currentTurn
+    if (this.check(newTable, this.state.currentTurn)) {
+      console.log(this.state.currentTurn, 'HAS WON')
+    }
+    this.setState({
+      table: newTable,
+      currentTurn: this.state.currentTurn === this.state.playerOne ? this.state.playerTwo : this.state.playerOne
+    })
+    console.log(this.state.currentTurn)
+  }
+
+  check (table, player) {
+    const winCombos = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -30,16 +42,24 @@ class App extends Component {
       [0, 4, 8],
       [2, 3, 6]
     ]
+
+    winCombos.forEach((combo) => {
+      if (combo.every((p) => {
+        return table[p] === player
+      })) {
+        return true
+      }
+    })
+    return false
   }
 
-  handleClick = (index) => {
-    const newTable = this.state.table.slice()
-    newTable[index] = this.state.currentTurn
-    this.setState({
-      table: newTable,
-      currentTurn: this.state.currentTurn === this.state.playerOne ? this.state.playerTwo : this.state.playerOne
-    })
-    console.log(this.state.currentTurn)
+  gameOver = (xWon) => {
+    if (xWon) {
+      document.querySelector('.dialog h3').textContent = 'Player X Won!'
+    } else {
+      document.querySelector('.dialog h3').textContent = 'Player O won!'
+    }
+    document.querySelector('body').className = 'modal'
   }
 
   render () {
