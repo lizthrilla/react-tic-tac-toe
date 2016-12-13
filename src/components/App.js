@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styles from '../styles/screen.scss'
-// import Cell from './cell.js'
+import Cell from './cell'
+import Table from './table'
 
 class App extends Component {
 
@@ -11,16 +12,10 @@ class App extends Component {
       playerTwo: 'O',
       currentTurn: 'X',
       table: [
-        '', '', ''
-      ]
+        '', '', '', '', '', '', '', '', ''
+      ],
+      winner: null
     }
-  }
-
-  handleClick = () => {
-    this.setState({
-      currentTurn: this.state.currentTurn === this.state.playerOne ? this.state.playerTwo : this.state.playerOne
-    })
-    console.log(this.state.currentTurn)
   }
 
   render () {
@@ -29,15 +24,26 @@ class App extends Component {
     return <div className={styles}>
       <h1>Tic Tac Toe</h1>
       <h2>Player X Goes</h2>
-      <table>
+      <Table />
+      {/* <table>
         <tbody>
           <tr>
-            <td id='0' onClick={e => this.handleClick(e.target.id)}> {this.state.currentTurn} </td>
-            <td id='1' onClick={e => this.handleClick(e.target.id)}> {this.state.currentTurn} </td>
-            <td id='2' onClick={e => this.handleClick(e.target.id)}> {this.state.currentTurn}</td>
+            <Cell />
+            <Cell />
+            <Cell />
+          </tr>
+          <tr>
+            <Cell />
+            <Cell />
+            <Cell />
+          </tr>
+          <tr>
+            <Cell />
+            <Cell />
+            <Cell />
           </tr>
         </tbody>
-      </table>
+      </table> */}
       <div className='overlay'>
         <div className='dialog'>
           <h3> !!! </h3>

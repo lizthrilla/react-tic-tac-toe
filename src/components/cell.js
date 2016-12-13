@@ -1,9 +1,21 @@
 import React, { Component } from 'react'
-import styles from './cell.scss'
+// import styles from './cell.scss'
 
 class Cell extends Component {
 
-  handleClick = () => {
+  constructor () {
+    super()
+    this.state = {
+      playerOne: 'X',
+      playerTwo: 'O',
+      currentTurn: 'X',
+      table: [' '],
+      winner: null,
+      empty: ' '
+    }
+  }
+
+  handleClick = (e) => {
     this.setState({
       currentTurn: this.state.currentTurn === this.state.playerOne ? this.state.playerTwo : this.state.playerOne
     })
