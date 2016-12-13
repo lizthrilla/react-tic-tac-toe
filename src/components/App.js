@@ -31,12 +31,17 @@ class App extends Component {
       [2, 3, 6]
     ]
   }
+
   handleClick = (index) => {
+    const newTable = this.state.table.slice()
+    newTable[index] = this.state.currentTurn
     this.setState({
+      table: newTable,
       currentTurn: this.state.currentTurn === this.state.playerOne ? this.state.playerTwo : this.state.playerOne
     })
     console.log(this.state.currentTurn)
   }
+
   render () {
     // const playerOne = this.state.symbolX
     // const playerTwo = this.state.symbolX
@@ -46,19 +51,19 @@ class App extends Component {
       <table>
         <tbody>
           <tr>
-            <Cell index={0} value={this.state.table[0]} />
-            <Cell index={1} value={this.state.table[1]} />
-            <Cell index={2} value={this.state.table[2]} />
+            <Cell index={0} value={this.state.table[0]} handleClick={this.handleClick} />
+            <Cell index={1} value={this.state.table[1]} handleClick={this.handleClick} />
+            <Cell index={2} value={this.state.table[2]} handleClick={this.handleClick} />
           </tr>
           <tr>
-            <Cell index={3} value={this.state.table[3]} />
-            <Cell index={4} value={this.state.table[4]} />
-            <Cell index={5} value={this.state.table[5]} />
+            <Cell index={3} value={this.state.table[3]} handleClick={this.handleClick} />
+            <Cell index={4} value={this.state.table[4]} handleClick={this.handleClick} />
+            <Cell index={5} value={this.state.table[5]} handleClick={this.handleClick} />
           </tr>
           <tr>
-            <Cell index={6} value={this.state.table[6]} />
-            <Cell index={7} value={this.state.table[7]} />
-            <Cell index={8} value={this.state.table[8]} />
+            <Cell index={6} value={this.state.table[6]} handleClick={this.handleClick} />
+            <Cell index={7} value={this.state.table[7]} handleClick={this.handleClick} />
+            <Cell index={8} value={this.state.table[8]} handleClick={this.handleClick} />
           </tr>
         </tbody>
       </table>

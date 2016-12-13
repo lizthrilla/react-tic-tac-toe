@@ -9,12 +9,6 @@ class Cell extends Component {
     value: React.PropTypes.string
   }
 
-  constructor () {
-    super()
-    this.state = {
-      value: ' '
-    }
-  }
   // handleClick = (e) => {
   //   this.setState({
   //     currentTurn: this.state.currentTurn === this.state.playerOne ? this.state.playerTwo : this.state.playerOne
@@ -23,7 +17,7 @@ class Cell extends Component {
   // }
 
   render () {
-    return <td onClick={() => this.props.handleClick(this.props.index)}> {this.state.value} </td>
+    return <td onClick={() => this.props.handleClick(this.props.index)}> {this.props.value} </td>
   }
 }
 
